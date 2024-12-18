@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Chat</title>
+  <title>Chat App</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,6 +14,7 @@
       min-height: 100vh;
       margin: 0;
     }
+
     #messages {
       width: 90%;
       max-width: 600px;
@@ -23,11 +24,41 @@
       padding: 10px;
       margin-bottom: 10px;
     }
-    input {
+
+    /* Input styles */
+    input[type="text"] {
+      font-size: 16px;
+      padding: 10px;
       width: 90%;
       max-width: 600px;
-      padding: 10px;
-      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Blinking cursor effect */
+    input[type="text"]:focus {
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      from, to {
+        border-right: 2px solid transparent;
+      }
+      50% {
+        border-right: 2px solid black;
+      }
+    }
+
+    /* Placeholder fade-out */
+    input::placeholder {
+      color: #999;
+      transition: opacity 0.3s ease;
+    }
+
+    input:focus::placeholder {
+      opacity: 0;
     }
   </style>
 </head>
@@ -35,8 +66,6 @@
   <h1>Simple Chat</h1>
   <div id="messages"></div>
   <input type="text" id="messageInput" placeholder="Type a message..." />
-  <script src="https://cdn.ably.io/lib/ably.min-1.js"></script>
-
   <script src="script.js"></script>
 </body>
 </html>
